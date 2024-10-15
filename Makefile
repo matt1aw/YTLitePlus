@@ -1,6 +1,6 @@
 TARGET = iphone:clang:16.5:14.0
-export SDK_PATH = $(THEOS)/sdks/iPhoneOS16.5.sdk/
-export SYSROOT = $(SDK_PATH)
+SDK_PATH = $(THEOS)/sdks/iPhoneOS16.5.sdk/
+SYSROOT = $(SDK_PATH)
 ARCHS = arm64
 MODULES = jailed
 FINALPACKAGE = 1
@@ -53,7 +53,7 @@ before-package::
 	@cp -R lang/YTLitePlus.bundle Resources/
 	@echo -e "==> \033[1mChanging the installation path of dylibs...\033[0m"
 	@ldid -r .theos/obj/iSponsorBlock.dylib && install_name_tool -change /usr/lib/libcolorpicker.dylib @rpath/libcolorpicker.dylib .theos/obj/iSponsorBlock.dylib
-	@codesign --remove-signature .theos/obj/libcolorpicker.dylib && install_name_tool -change /Library/Frameworks/Alderis.framework/Alderis @rpath/Alderis.framework/Alderis .theos/obj/libcolorpicker.dylib
+	@codesign --remove-signature .theos/obj/libcolorpicker.dylib && install_name_tool -change @executable_path/Frameworks/Alderis.framework/Alderis @rpath/Alderis.framework/Alderis .theos/obj/libcolorpicker.dylib
 
 internal-clean::
 	@rm -rf $(YTLITE_PATH)/*
