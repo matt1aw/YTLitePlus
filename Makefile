@@ -8,6 +8,11 @@ CODESIGN_IPA = 0
 PACKAGE_NAME = $(TWEAK_NAME)
 PACKAGE_VERSION = X.X.X-X.X
 
+libcolorpicker_ARCHS = arm64
+Alderis_XCODEOPTS = LD_DYLIB_INSTALL_NAME=@rpath/Alderis.framework/Alderis
+Alderis_XCODEFLAGS = DYLIB_INSTALL_NAME_BASE=/Library/Frameworks BUILD_LIBRARY_FOR_DISTRIBUTION=YES ARCHS="$(ARCHS)"
+libcolorpicker_LDFLAGS = -F$(TARGET_PRIVATE_FRAMEWORK_PATH) -install_name @rpath/libcolorpicker.dylib
+
 TWEAK_NAME = YTLitePlus
 DISPLAY_NAME = YouTube
 BUNDLE_ID = com.google.ios.youtube
